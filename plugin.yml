@@ -1,0 +1,7 @@
+name: UmbaskaScript
+version: 1.0
+api: [1.0.0]
+main: uk\co\umbaska\umbaskascript\UmbaskaScript
+author: nfell2009
+description: Bringing the word of Skript to PocketMine!
+website: http://umbaska.co.uk
