@@ -8,7 +8,7 @@ use pocketmine\plugin\PluginBase as Base;
 use uk\co\umbaska\umbaskascript\ScriptLoader as Loader;
 
 class UmbaskaScript extends Base {
-    public function onLoad() {
+    public function onEnable() {
         if (!is_dir($this->getDataFolder())) {
     	    mkdir($this->getDataFolder());
     	}
