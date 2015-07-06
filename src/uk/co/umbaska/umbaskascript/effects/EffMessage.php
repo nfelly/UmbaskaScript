@@ -1,5 +1,4 @@
 <?php
-
 namespace uk\co\umbaska\umbaskascript\effects;
 
 use pocketmine\Server;
