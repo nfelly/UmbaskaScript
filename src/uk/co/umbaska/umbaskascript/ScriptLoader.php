@@ -6,11 +6,14 @@ use pocketmine\Server;
 use uk\co\umbaska\umbaskascript\UmbaskaScript;
 
 class ScriptLoader {
-
-	public function __construct(UmbaskaScript $plugin) {
-        $this->plugin = $plugin;
+	
+	public function __construct(UmbaskaScript $plugin){
+    	$this->plugin = $plugin;
     }
-
+	public function getPlugin(){
+        return $this->plugin;
+    }
+	
     public static function loadScripts() {
 		$scripts = scandir($this->plugin->getDataFolder() . "scripts/");
 		$counter = 0;
