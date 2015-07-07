@@ -7,8 +7,8 @@ use pocketmine\plugin\PluginBase as Base;
 use uk\co\umbaska\umbaskascript\UmbaskaScript as Script;
 
 class ScriptLoader {
-    public function loadScripts() {
-		$scripts = scandir($this->getDataFolder() . "scripts/");
+    public static function loadScripts() {
+		$scripts = scandir("/plugins/UmbaskaScript/scripts/");
 		foreach ($scripts as &$file) {
 			$contents = file($file);
 			$counter = 0;
