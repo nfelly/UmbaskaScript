@@ -14,14 +14,11 @@ class UmbaskaScript extends Base {
 		$plugin = $this;
         if (!is_dir($this->getDataFolder())) mkdir($this->getDataFolder());
 		if (!is_dir($this->getDataFolder() . "scripts/")) mkdir($this->getDataFolder() . "scripts/");
-		ScriptLoader::loadScripts();
+		ScriptLoader($this)->loadScripts();
 	}
 	
 	public function returnEventsArray() {
 		return self::$eventsArray();
 	}
-	
-	public static function getInstance(Server $server){
-		return $server->getPluginManager()->getPlugin("UmbaskaScript");
-	}
+
 }
