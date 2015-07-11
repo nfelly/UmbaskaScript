@@ -1,31 +1,27 @@
 <?php
 namespace uk\co\umbaska\umbaskascript;
 
-use pocketmine\Server;
-
-use uk\co\umbaska\umbaskascript\UmbaskaScript;
-
 class ScriptLoader {
-	
-	public function __construct(UmbaskaScript $plugin){
-    	$this->plugin = $plugin;
-    }
-	public function getPlugin(){
-        return $this->plugin;
-    }
-	
-    public static function loadScripts() {
-		$scripts = scandir($this->plugin->getDataFolder() . "scripts/");
+
+    public static function loadScripts($that) {
+		$files = scandir($that->getDataFolder() . "scripts/");
+		$umbaska = new UmbaskaScript();
 		$counter = 0;
-		foreach ($scripts as &$file) {
-			$contents = file($file);
-			foreach($contents as $line) {
-				if ($line == "on block break:") {
-					++$counter;
-					array_push(UmbaskaScript::returnEventsArray(), "on block break::" . $file . "::" . $counter);
+		foreach($files as $file) {
+			$in = fopen($file, 'rb');
+			++$counter;
+			$linecounter = 0;
+			while($line = fread($in)) {
+				++$linecounter;
+				foreach($umbaska->eventsArray as $event) {
+					$value = explode("::", $event);
+					if ($line == $value[1]) {
+						array_push($umbaska->loadedEvents, $file . "::" . $event . "::" . $linecounter);
+					}
 				}
 			}
 		}
-		$this->plugin->getServer()->getLogger()->error("Loaded: " . $counter . " scripts!");
+		$that->getServer()->getLogger()->info("Loaded: " . $counter . " scripts!");
 	}
+	
 }
